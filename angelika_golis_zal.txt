@@ -11,12 +11,12 @@ ZADANIE 4
 
 pkt a:
 
-select products.productName, year(orders.orderDate) rok, sum(orderdetails.quantityOrdered)
+select products.productName, year(orders.orderDate) orderYear, sum(orderdetails.quantityOrdered) quantity
 from products
 join orderdetails on products.productCode = orderdetails.productCode
 join orders on orders.orderNumber = orderdetails.orderNumber
 where products.productName in ("1952 Alpine Renault 1300", "1968 Ford Mustang", "1996 Moto Guzzi 1100i")
-group by rok, products.productName;
+group by orderYear, products.productName;
 
 pkt b:
 
