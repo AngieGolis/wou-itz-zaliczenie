@@ -1,0 +1,37 @@
+ZADANIE 2
+
+select contactFirstName, contactLastName, count(orders.orderNumber) orderCount from customers
+join orders
+on customers.customerNumber = orders.customerNumber
+group by customers.customerNumber;
+
+
+
+ZADANIE 4
+
+pkt a:
+
+select products.productName, year(orders.orderDate) rok, sum(orderdetails.quantityOrdered)
+from products
+join orderdetails on products.productCode = orderdetails.productCode
+join orders on orders.orderNumber = orderdetails.orderNumber
+where products.productName in ("1952 Alpine Renault 1300", "1968 Ford Mustang", "1996 Moto Guzzi 1100i")
+group by rok, products.productName;
+
+pkt b:
+
+select products.productName, year(orders.orderDate) orderYear, month(orders.orderDate) orderMonth, sum(orderdetails.quantityOrdered) quantity
+from products
+join orderdetails on products.productCode = orderdetails.productCode 
+join orders on orders.orderNumber = orderdetails.orderNumber
+where products.productName like '%harley%'
+group by products.productName, orderYear, orderMonth;
+
+pkt c:
+
+select productlines.productLine, count(products.productCode) productCount
+from products
+join productlines on products.productLine = productlines.productLine
+group by productlines.productLine
+having count(products.productCode) between 11 and 20;
+
