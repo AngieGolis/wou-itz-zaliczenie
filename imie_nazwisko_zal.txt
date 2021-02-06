@@ -1,0 +1,7 @@
+ZADANIE 2
+
+select contactFirstName, contactLastName, count(orders.orderNumber) orderCount from customers
+join orders
+on customers.customerNumber = orders.customerNumber
+group by customers.customerNumber;
+
